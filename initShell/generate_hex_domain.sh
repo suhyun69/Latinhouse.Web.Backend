@@ -5,8 +5,8 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-PACKAGE_NAME="$1"
-PACKAGE_PATH="$2"
+PACKAGE_NAME="com.latinhouse.backend"
+PACKAGE_PATH="com/latinhouse/backend"
 
 DOMAIN_NAME=$1
 CAP_DOMAIN="$(tr '[:lower:]' '[:upper:]' <<< ${DOMAIN_NAME:0:1})${DOMAIN_NAME:1}"
