@@ -55,7 +55,7 @@ public class LessonService implements AddLessonUseCase
         }
 
         Lesson lesson = optionalLesson.get();
-        lesson.setContent(appReq.getContent());
+        // lesson.setContent(appReq.getContent());
 
         Lesson updated = updateLessonPort.update(lesson);
         return new LessonAppResponse(updated);

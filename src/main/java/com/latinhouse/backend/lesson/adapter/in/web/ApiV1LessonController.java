@@ -33,10 +33,7 @@ public class ApiV1LessonController {
     @Operation(summary = "Add Lesson", description = "Add Lesson")
     public ResponseEntity<LessonWebResponse> add(@Valid @RequestBody AddLessonWebRequest webReq) {
 
-        AddLessonAppRequest appReq = AddLessonAppRequest.builder()
-                .id(webReq.getId())
-                .content(webReq.getContent())
-                .build();
+        AddLessonAppRequest appReq = AddLessonAppRequest.from(webReq);
         LessonWebResponse response = new LessonWebResponse(addLessonUseCase.add(appReq));
 
         return ResponseEntity

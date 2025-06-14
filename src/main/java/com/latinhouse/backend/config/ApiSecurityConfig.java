@@ -31,6 +31,7 @@ public class ApiSecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/*/auth/**").permitAll()
                         .requestMatchers("/api/*/profile/**").permitAll()
+                        .requestMatchers("/api/*/lesson/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

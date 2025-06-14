@@ -26,12 +26,7 @@ public class LessonPersistenceAdapter implements CreateLessonPort
 
     @Override
     public Lesson create(AddLessonAppRequest appReq) {
-
-        LessonJpaEntity lessonT = LessonJpaEntity.builder()
-                .id(appReq.getId())
-                .content(appReq.getContent())
-                .build();
-
+        LessonJpaEntity lessonT = lessonMapper.mapToJpaEntity(appReq);
         return lessonMapper.mapToDomainEntity(lessonRepository.save(lessonT));
     }
 

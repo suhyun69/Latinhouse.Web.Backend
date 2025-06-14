@@ -3,6 +3,7 @@ package com.latinhouse.backend.lesson.adapter.in.web.request;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -53,12 +54,14 @@ public class AddLessonWebRequest {
 
     private String locationUrl;
 
-    @NotBlank(message = "price must not be null")
+    @NotNull(message = "price must not be null")
     @Min(value = 0, message = "price must be greater than or equal to 0")
     private BigDecimal price;
 
     @Valid
     private List<Discount> discounts;
+
+    @Min(value = 0, message = "maxDiscountAmount must be greater than or equal to 0")
     private BigDecimal maxDiscountAmount;
     private List<String> discountSubTexts;
 
@@ -89,7 +92,7 @@ public class AddLessonWebRequest {
         @NotBlank(message = "condition must not be null")
         private String condition;
 
-        @NotBlank(message = "amount must not be null.")
+        @NotNull(message = "amount must not be null.")
         @Min(value = 0, message = "amount must be greater than or equal to 0")
         private BigDecimal amount;
     }
@@ -100,7 +103,7 @@ public class AddLessonWebRequest {
     public static class Contact {
 
         @NotBlank(message = "type must not be null.")
-        @Pattern(regexp = "^[PKICYW]$", message = "type must be 'P' or 'K' or 'I' or ''Y' or 'W'")
+        @Pattern(regexp = "^[PKICYW]$", message = "type must be 'P' or 'K' or 'I' or 'Y' or 'W'")
         // Phone, Kakaotalk, Instagram, Youtube, Web
         private String type;
 
