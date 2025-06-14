@@ -11,5 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Profile {
     private String id;
-    private String content;
+    private String nickname;
+    private Sex sex;
+    private Boolean isInstructor;
+    private Boolean isAdmin;
 }

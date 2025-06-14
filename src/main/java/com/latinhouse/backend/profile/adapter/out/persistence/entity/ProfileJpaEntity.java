@@ -17,5 +17,8 @@ import lombok.NoArgsConstructor;
 public class ProfileJpaEntity {
     @Id
     private String id;
-    private String content;
+    private String nickname;
+    private String sex;
+    private Boolean isInstructor;
+    private Boolean isAdmin;
 }

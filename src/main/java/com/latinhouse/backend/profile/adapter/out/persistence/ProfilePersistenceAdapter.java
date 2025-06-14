@@ -29,9 +29,11 @@ public class ProfilePersistenceAdapter implements CreateProfilePort
 
         ProfileJpaEntity profileT = ProfileJpaEntity.builder()
                 .id(appReq.getId())
-                .content(appReq.getContent())
+                .nickname(appReq.getNickname())
+                .sex(appReq.getSex().getCode())
+                .isInstructor(false)
+                .isAdmin(false)
                 .build();
-
         return profileMapper.mapToDomainEntity(profileRepository.save(profileT));
     }
 

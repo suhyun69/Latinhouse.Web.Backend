@@ -1,11 +1,12 @@
 package com.latinhouse.backend.profile.application.service;
 
+import com.latinhouse.backend.global.exception.CustomException;
+import com.latinhouse.backend.global.exception.ErrorCode;
 import com.latinhouse.backend.profile.domain.Profile;
 import com.latinhouse.backend.profile.port.in.AddProfileUseCase;
 import com.latinhouse.backend.profile.port.in.FindProfileUseCase;
 import com.latinhouse.backend.profile.port.in.UpdateProfileUseCase;
 import com.latinhouse.backend.profile.port.in.request.AddProfileAppRequest;
-import com.latinhouse.backend.profile.port.in.request.UpdateProfileAppRequest;
 import com.latinhouse.backend.profile.port.in.response.ProfileAppResponse;
 import com.latinhouse.backend.profile.port.out.CreateProfilePort;
 import com.latinhouse.backend.profile.port.out.ReadProfilePort;
@@ -48,14 +49,15 @@ public class ProfileService implements AddProfileUseCase
     }
 
     @Override
-    public ProfileAppResponse update(String id, UpdateProfileAppRequest appReq) {
+    public ProfileAppResponse enrollInstructor(String id) {
+
         Optional<Profile> optionalProfile = readProfilePort.findById(id);
         if (optionalProfile.isEmpty()) {
-            throw new RuntimeException("Profile not found");
+            throw new CustomException(ErrorCode.PROFILE_NOT_FOUND);
         }
 
         Profile profile = optionalProfile.get();
-        profile.setContent(appReq.getContent());
+        profile.setIsInstructor(true);
 
         Profile updated = updateProfilePort.update(profile);
         return new ProfileAppResponse(updated);

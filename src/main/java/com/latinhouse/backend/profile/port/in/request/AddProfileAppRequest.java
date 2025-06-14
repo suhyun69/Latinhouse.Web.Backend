@@ -1,5 +1,6 @@
 package com.latinhouse.backend.profile.port.in.request;
 
+import com.latinhouse.backend.profile.domain.Sex;
 import lombok.Builder;
 import lombok.Value;
 
@@ -7,5 +8,6 @@ import lombok.Value;
 @Builder
 public class AddProfileAppRequest {
     String id;
-    String content;
+    String nickname;
+    Sex sex;
 }

@@ -8,10 +8,14 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ProfileWebResponse {
     private String id;
-    private String content;
+    private String nickname;
+    private String sex;
+    private Boolean isInstructor;
 
     public ProfileWebResponse(ProfileAppResponse appRes) {
         this.id = appRes.getId();
-        this.content = appRes.getContent();
+        this.nickname = appRes.getNickname();
+        this.sex = appRes.getSex().getCode();
+        this.isInstructor = appRes.getIsInstructor();
     }
 }

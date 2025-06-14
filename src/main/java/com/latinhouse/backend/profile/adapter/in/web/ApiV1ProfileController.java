@@ -1,13 +1,12 @@
 package com.latinhouse.backend.profile.adapter.in.web;
 
 import com.latinhouse.backend.profile.adapter.in.web.request.AddProfileWebRequest;
-import com.latinhouse.backend.profile.adapter.in.web.request.UpdateProfileWebRequest;
 import com.latinhouse.backend.profile.adapter.in.web.response.ProfileWebResponse;
+import com.latinhouse.backend.profile.domain.Sex;
 import com.latinhouse.backend.profile.port.in.AddProfileUseCase;
 import com.latinhouse.backend.profile.port.in.FindProfileUseCase;
 import com.latinhouse.backend.profile.port.in.UpdateProfileUseCase;
 import com.latinhouse.backend.profile.port.in.request.AddProfileAppRequest;
-import com.latinhouse.backend.profile.port.in.request.UpdateProfileAppRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -35,7 +34,8 @@ public class ApiV1ProfileController {
 
         AddProfileAppRequest appReq = AddProfileAppRequest.builder()
                 .id(webReq.getId())
-                .content(webReq.getContent())
+                .nickname(webReq.getNickname())
+                .sex(Sex.of(webReq.getSex()))
                 .build();
         ProfileWebResponse response = new ProfileWebResponse(addProfileUseCase.add(appReq));
 
@@ -68,14 +68,11 @@ public class ApiV1ProfileController {
                 .body(response);
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Update Profile", description = "Update Profile")
-    public ResponseEntity<ProfileWebResponse> update(@RequestParam("id") String id, @Valid @RequestBody UpdateProfileWebRequest webReq) {
+    @PutMapping("/{id}/instructor")
+    @Operation(summary = "Enroll Instructor", description = "enroll instructor")
+    public ResponseEntity<ProfileWebResponse> update(@RequestParam("id") String id) {
 
-        UpdateProfileAppRequest appReq = UpdateProfileAppRequest.builder()
-                .content(webReq.getContent())
-                .build();
-        ProfileWebResponse response = new ProfileWebResponse(updateProfileUseCase.update(id, appReq));
+        ProfileWebResponse response = new ProfileWebResponse(updateProfileUseCase.enrollInstructor(id));
 
         return ResponseEntity
                 .status(HttpStatus.OK)
