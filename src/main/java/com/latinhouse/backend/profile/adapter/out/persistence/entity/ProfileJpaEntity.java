@@ -20,5 +20,5 @@ public class ProfileJpaEntity {
     private String nickname;
     private String sex;
     private Boolean isInstructor;
-    private Boolean isAdmin;
+    private String email;
 }

@@ -32,7 +32,7 @@ public class ProfilePersistenceAdapter implements CreateProfilePort
                 .nickname(appReq.getNickname())
                 .sex(appReq.getSex().getCode())
                 .isInstructor(false)
-                .isAdmin(false)
+                .email(appReq.getEmail())
                 .build();
         return profileMapper.mapToDomainEntity(profileRepository.save(profileT));
     }
