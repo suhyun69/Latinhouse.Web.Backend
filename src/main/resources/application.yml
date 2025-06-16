@@ -23,6 +23,7 @@ springdoc:
     - com.latinhouse.backend.user.adapter.in.web
     - com.latinhouse.backend.auth.adapter.in.web
     - com.latinhouse.backend.profile.adapter.in.web
+    - com.latinhouse.backend.lesson.adapter.in.web
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
   swagger-ui:
