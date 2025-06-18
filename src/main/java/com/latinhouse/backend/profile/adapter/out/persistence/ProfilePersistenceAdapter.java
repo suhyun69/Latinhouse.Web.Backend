@@ -30,7 +30,7 @@ public class ProfilePersistenceAdapter implements CreateProfilePort
         ProfileJpaEntity profileT = ProfileJpaEntity.builder()
                 .id(appReq.getId())
                 .nickname(appReq.getNickname())
-                .sex(appReq.getSex().getCode())
+                .sex(appReq.getSex())
                 .isInstructor(false)
                 .email(appReq.getEmail())
                 .build();

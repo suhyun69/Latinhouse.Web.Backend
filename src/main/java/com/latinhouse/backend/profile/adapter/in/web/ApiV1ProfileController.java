@@ -35,7 +35,7 @@ public class ApiV1ProfileController {
         AddProfileAppRequest appReq = AddProfileAppRequest.builder()
                 .id(webReq.getId())
                 .nickname(webReq.getNickname())
-                .sex(Sex.of(webReq.getSex()))
+                .sex(webReq.getSex())
                 .build();
         ProfileWebResponse response = new ProfileWebResponse(addProfileUseCase.add(appReq));
 

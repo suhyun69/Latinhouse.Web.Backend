@@ -33,6 +33,7 @@ public class ApiSecurityConfig {
                         .requestMatchers("/api/*/profile/**").permitAll()
                         .requestMatchers("/api/*/lesson/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/*/user").permitAll()
+                        .requestMatchers("/api/*/signup/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

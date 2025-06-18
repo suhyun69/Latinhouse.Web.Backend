@@ -34,10 +34,9 @@ public class UserService implements AddUserUseCase
     }
 
     @Override
-    public UserAppResponse findByEmail(String id) {
+    public Optional<UserAppResponse> findByEmail(String id) {
         return readUserPort.findByEmail(id)
-                .map(UserAppResponse::new)
-                .orElse(null);
+                .map(UserAppResponse::new);
     }
 
     @Override

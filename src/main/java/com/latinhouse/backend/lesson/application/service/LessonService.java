@@ -34,10 +34,9 @@ public class LessonService implements AddLessonUseCase
     }
 
     @Override
-    public LessonAppResponse findById(String id) {
+    public Optional<LessonAppResponse> findById(String id) {
         return readLessonPort.findById(id)
-                .map(LessonAppResponse::new)
-                .orElse(null);
+                .map(LessonAppResponse::new);
     }
 
     @Override

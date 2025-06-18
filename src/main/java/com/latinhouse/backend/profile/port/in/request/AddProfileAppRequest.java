@@ -9,6 +9,6 @@ import lombok.Value;
 public class AddProfileAppRequest {
     String id;
     String nickname;
-    Sex sex;
+    String sex;
     String email;
 }
