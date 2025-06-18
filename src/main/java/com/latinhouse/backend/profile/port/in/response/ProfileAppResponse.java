@@ -12,13 +12,11 @@ public class ProfileAppResponse {
     private String nickname;
     private Sex sex;
     private Boolean isInstructor;
-    private Boolean isAdmin;
 
     public ProfileAppResponse(Profile profile) {
         this.id = profile.getId();
         this.nickname = profile.getNickname();
         this.sex = profile.getSex();
         this.isInstructor = profile.getIsInstructor();
-        this.isAdmin = profile.getIsAdmin();
     }
 }

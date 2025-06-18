@@ -14,5 +14,5 @@ public class Profile {
     private String nickname;
     private Sex sex;
     private Boolean isInstructor;
-    private Boolean isAdmin;
+    private String email;
 }

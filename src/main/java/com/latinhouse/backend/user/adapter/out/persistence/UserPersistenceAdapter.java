@@ -4,7 +4,7 @@ import com.latinhouse.backend.user.adapter.out.persistence.entity.UserJpaEntity;
 import com.latinhouse.backend.user.adapter.out.persistence.mapper.UserMapper;
 import com.latinhouse.backend.user.adapter.out.persistence.repository.UserRepository;
 import com.latinhouse.backend.user.domain.User;
-import com.latinhouse.backend.user.port.in.request.EmailSignupAppRequest;
+import com.latinhouse.backend.user.port.in.request.AddUserAppRequest;
 import com.latinhouse.backend.user.port.out.CreateUserPort;
 import com.latinhouse.backend.user.port.out.ReadUserPort;
 import com.latinhouse.backend.user.port.out.UpdateUserPort;
@@ -25,7 +25,7 @@ public class UserPersistenceAdapter implements CreateUserPort
     private final UserRepository userRepository;
 
     @Override
-    public User create(EmailSignupAppRequest appReq) {
+    public User create(AddUserAppRequest appReq) {
 
         UserJpaEntity userT = UserJpaEntity.builder()
                 .email(appReq.getEmail())

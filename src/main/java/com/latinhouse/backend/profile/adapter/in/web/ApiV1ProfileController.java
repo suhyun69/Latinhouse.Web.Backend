@@ -35,7 +35,7 @@ public class ApiV1ProfileController {
         AddProfileAppRequest appReq = AddProfileAppRequest.builder()
                 .id(webReq.getId())
                 .nickname(webReq.getNickname())
-                .sex(Sex.of(webReq.getSex()))
+                .sex(webReq.getSex())
                 .build();
         ProfileWebResponse response = new ProfileWebResponse(addProfileUseCase.add(appReq));
 
@@ -51,7 +51,7 @@ public class ApiV1ProfileController {
         ProfileWebResponse response = new ProfileWebResponse(findProfileUseCase.findById(id));
 
         return ResponseEntity
-                .status(HttpStatus.CREATED)
+                .status(HttpStatus.OK)
                 .body(response);
     }
 
@@ -64,7 +64,7 @@ public class ApiV1ProfileController {
                 .collect(Collectors.toList());
 
         return ResponseEntity
-                .status(HttpStatus.CREATED)
+                .status(HttpStatus.OK)
                 .body(response);
     }
 

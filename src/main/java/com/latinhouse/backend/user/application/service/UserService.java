@@ -2,9 +2,9 @@ package com.latinhouse.backend.user.application.service;
 
 import com.latinhouse.backend.user.domain.User;
 import com.latinhouse.backend.user.port.in.FindUserUseCase;
-import com.latinhouse.backend.user.port.in.SignupUseCase;
+import com.latinhouse.backend.user.port.in.AddUserUseCase;
 import com.latinhouse.backend.user.port.in.UpdateUserUseCase;
-import com.latinhouse.backend.user.port.in.request.EmailSignupAppRequest;
+import com.latinhouse.backend.user.port.in.request.AddUserAppRequest;
 import com.latinhouse.backend.user.port.in.request.UpdateUserAppRequest;
 import com.latinhouse.backend.user.port.in.response.UserAppResponse;
 import com.latinhouse.backend.user.port.out.CreateUserPort;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements SignupUseCase
+public class UserService implements AddUserUseCase
         , FindUserUseCase
         , UpdateUserUseCase
 {
@@ -29,15 +29,14 @@ public class UserService implements SignupUseCase
     private final UpdateUserPort updateUserPort;
 
     @Override
-    public UserAppResponse emailSignup(EmailSignupAppRequest appReq) {
+    public UserAppResponse addByEmail(AddUserAppRequest appReq) {
         return new UserAppResponse(createUserPort.create(appReq));
     }
 
     @Override
-    public UserAppResponse findByEmail(String id) {
+    public Optional<UserAppResponse> findByEmail(String id) {
         return readUserPort.findByEmail(id)
-                .map(UserAppResponse::new)
-                .orElse(null);
+                .map(UserAppResponse::new);
     }
 
     @Override

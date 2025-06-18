@@ -5,7 +5,7 @@ import lombok.Value;
 
 @Value
 @Builder
-public class EmailSignupAppRequest {
+public class AddUserAppRequest {
     String email;
     String password;
 }

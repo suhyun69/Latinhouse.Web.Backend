@@ -1,5 +1,7 @@
 package com.latinhouse.backend.lesson.adapter.in.web;
 
+import com.latinhouse.backend.global.exception.CustomException;
+import com.latinhouse.backend.global.exception.ErrorCode;
 import com.latinhouse.backend.lesson.adapter.in.web.request.AddLessonWebRequest;
 import com.latinhouse.backend.lesson.adapter.in.web.request.UpdateLessonWebRequest;
 import com.latinhouse.backend.lesson.adapter.in.web.response.LessonWebResponse;
@@ -8,6 +10,7 @@ import com.latinhouse.backend.lesson.port.in.FindLessonUseCase;
 import com.latinhouse.backend.lesson.port.in.UpdateLessonUseCase;
 import com.latinhouse.backend.lesson.port.in.request.AddLessonAppRequest;
 import com.latinhouse.backend.lesson.port.in.request.UpdateLessonAppRequest;
+import com.latinhouse.backend.lesson.port.in.response.LessonAppResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -45,7 +48,9 @@ public class ApiV1LessonController {
     @Operation(summary = "Find Lesson", description = "Find Lesson")
     public ResponseEntity<LessonWebResponse> findById(@RequestParam("id") String id) {
 
-        LessonWebResponse response = new LessonWebResponse(findLessonUseCase.findById(id));
+        LessonAppResponse appRes = findLessonUseCase.findById(id)
+                .orElseThrow(() -> new CustomException(ErrorCode.LESSON_NOT_FOUND));
+        LessonWebResponse response = new LessonWebResponse(appRes);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)

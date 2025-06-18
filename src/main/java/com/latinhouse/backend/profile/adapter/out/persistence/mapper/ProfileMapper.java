@@ -15,7 +15,6 @@ public class ProfileMapper {
                 .nickname(profile.getNickname())
                 .sex(profile.getSex().getCode())
                 .isInstructor(profile.getIsInstructor())
-                .isAdmin(profile.getIsAdmin())
                 .build();
     }
 
@@ -25,7 +24,6 @@ public class ProfileMapper {
                 .nickname(userT.getNickname())
                 .sex(Sex.of(userT.getSex()))
                 .isInstructor(userT.getIsInstructor())
-                .isAdmin(userT.getIsAdmin())
                 .build();
     }
 }
