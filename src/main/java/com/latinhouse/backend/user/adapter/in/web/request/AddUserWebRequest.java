@@ -1,4 +1,4 @@
-package com.latinhouse.backend.auth.adapter.in.web.request;
+package com.latinhouse.backend.user.adapter.in.web.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmailSignupWebRequest {
+public class AddUserWebRequest {
     private String email;
     private String password;
 }

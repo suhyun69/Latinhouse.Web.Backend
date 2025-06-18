@@ -1,15 +1,13 @@
 package com.latinhouse.backend.auth.adapter.in.web;
 
 import com.latinhouse.backend.auth.adapter.in.web.request.EmailLoginWebRequest;
-import com.latinhouse.backend.auth.adapter.in.web.request.EmailSignupWebRequest;
-import com.latinhouse.backend.auth.adapter.in.web.response.EmailSignupWebResponse;
 import com.latinhouse.backend.auth.adapter.in.web.response.LoginWebResponse;
 import com.latinhouse.backend.auth.port.in.LoginUseCase;
 import com.latinhouse.backend.auth.port.in.LogoutUseCase;
 import com.latinhouse.backend.auth.port.in.request.EmailLoginAppRequest;
 import com.latinhouse.backend.auth.port.in.response.LoginAppResponse;
-import com.latinhouse.backend.user.port.in.SignupUseCase;
-import com.latinhouse.backend.user.port.in.request.EmailSignupAppRequest;
+import com.latinhouse.backend.user.port.in.AddUserUseCase;
+import com.latinhouse.backend.user.port.in.request.AddUserAppRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,25 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ApiV1AuthController {
 
-    private final SignupUseCase signupUseCase;
     private final LoginUseCase loginUseCase;
     private final LogoutUseCase logoutUseCase;
-    private final PasswordEncoder passwordEncoder;
-
-    @PostMapping("/signup/email")
-    @Operation(summary = "Signup", description = "by email")
-    public ResponseEntity<EmailSignupWebResponse> emailSignup(@Valid @RequestBody EmailSignupWebRequest webReq) {
-
-        EmailSignupAppRequest appReq = EmailSignupAppRequest.builder()
-                .email(webReq.getEmail())
-                .password(passwordEncoder.encode(webReq.getPassword()))
-                .build();
-        EmailSignupWebResponse response = new EmailSignupWebResponse(signupUseCase.emailSignup(appReq));
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(response);
-    }
 
     @PostMapping("/login/email")
     @Operation(summary = "Login", description = "by email")
