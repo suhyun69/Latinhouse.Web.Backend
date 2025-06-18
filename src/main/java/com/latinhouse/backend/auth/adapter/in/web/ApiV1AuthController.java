@@ -70,7 +70,7 @@ public class ApiV1AuthController {
 
         LoginWebResponse webRes = new LoginWebResponse(appRes);
         return ResponseEntity
-                .status(HttpStatus.CREATED)
+                .status(HttpStatus.OK)
                 .body(webRes);
     }
 

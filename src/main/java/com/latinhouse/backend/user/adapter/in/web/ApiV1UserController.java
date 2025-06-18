@@ -67,7 +67,7 @@ public class ApiV1UserController {
                 .collect(Collectors.toList());
 
         return ResponseEntity
-                .status(HttpStatus.CREATED)
+                .status(HttpStatus.OK)
                 .body(response);
     }
 

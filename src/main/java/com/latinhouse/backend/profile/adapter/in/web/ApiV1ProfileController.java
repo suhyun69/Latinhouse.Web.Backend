@@ -51,7 +51,7 @@ public class ApiV1ProfileController {
         ProfileWebResponse response = new ProfileWebResponse(findProfileUseCase.findById(id));
 
         return ResponseEntity
-                .status(HttpStatus.CREATED)
+                .status(HttpStatus.OK)
                 .body(response);
     }
 
@@ -64,7 +64,7 @@ public class ApiV1ProfileController {
                 .collect(Collectors.toList());
 
         return ResponseEntity
-                .status(HttpStatus.CREATED)
+                .status(HttpStatus.OK)
                 .body(response);
     }
 
